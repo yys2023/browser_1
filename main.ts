@@ -1,19 +1,19 @@
 input.onButtonPressed(Button.A, function () {
     KSRobot_IOT.MQTTPublish1(KSRobot_IOT.TOPIC.Topic0, "1")
-    strip.showColor(neopixel.colors(NeoPixelColors.Black))
+    strip.showColor(neopixel.colors(NeoPixelColors.Red))
     basic.showIcon(IconNames.Yes)
 })
 input.onButtonPressed(Button.B, function () {
     KSRobot_IOT.MQTTPublish1(KSRobot_IOT.TOPIC.Topic0, "0")
-    strip.showColor(neopixel.colors(NeoPixelColors.Black))
+    strip.showColor(neopixel.colors(NeoPixelColors.Green))
     basic.showIcon(IconNames.No)
 })
 KSRobot_IOT.MQTT_Data1(KSRobot_IOT.TOPIC.Topic0, function (message) {
     if (message == "1") {
-        strip.showColor(neopixel.colors(NeoPixelColors.White))
+        strip.showColor(neopixel.colors(NeoPixelColors.Red))
         basic.showIcon(IconNames.Yes)
     } else if (message == "0") {
-        strip.showColor(neopixel.colors(NeoPixelColors.Black))
+        strip.showColor(neopixel.colors(NeoPixelColors.Green))
         basic.showIcon(IconNames.No)
     }
 })
@@ -32,10 +32,7 @@ KSRobot_IOT.MQTT_set(
 "",
 ""
 )
-basic.pause(1000)
-KSRobot_IOT.MQTTSubscribe("yys/test1")
+KSRobot_IOT.MQTTSubscribe1(KSRobot_IOT.TOPIC.Topic0, "yys/test1")
 strip = neopixel.create(DigitalPin.P16, 4, NeoPixelMode.RGB)
 basic.showIcon(IconNames.No)
-basic.forever(function () {
-	
-})
+basic.pause(1000)
